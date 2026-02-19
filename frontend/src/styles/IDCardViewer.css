@@ -1,0 +1,1378 @@
+/* ID Card Viewer Styles */
+.id-card-viewer {
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: calc(100vh - 80px);
+}
+
+.viewer-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.viewer-header h1 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 2rem;
+}
+
+.viewer-header .subtitle {
+  color: #7f8c8d;
+  margin-top: 5px;
+}
+
+/* Filters Section */
+.filters-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.filters-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.clear-filters-btn {
+  background: #ecf0f1;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #7f8c8d;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.clear-filters-btn:hover {
+  background: #bdc3c7;
+  color: #2c3e50;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.filter-group label {
+  display: block;
+  font-weight: 600;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Actions Section */
+.actions-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+}
+
+.stat-item {
+  color: #7f8c8d;
+  font-size: 0.95rem;
+}
+
+.stat-item strong {
+  color: #2c3e50;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.view-mode-btn,
+.select-all-btn,
+.export-btn,
+.export-all-btn {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.view-mode-btn {
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.view-mode-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.view-mode-btn:hover:not(.active) {
+  background: #bdc3c7;
+}
+
+.select-all-btn {
+  background: #3498db;
+  color: white;
+}
+
+.select-all-btn:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.export-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(67, 233, 123, 0.4);
+}
+
+.export-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.export-all-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.export-all-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.export-all-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading & Error States */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: #667eea;
+}
+
+.loading-state .spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #ecf0f1;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  background: #fadbd8;
+  color: #c0392b;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid #c0392b;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  color: #95a5a6;
+  font-size: 1.1rem;
+  grid-column: 1 / -1;
+}
+
+/* ID Cards Grid */
+.id-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.id-card-wrapper {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.id-card-wrapper:hover {
+  transform: translateY(-5px);
+}
+
+.id-card-wrapper.selected {
+  transform: scale(1.02);
+}
+
+.id-card-wrapper.selected .id-card {
+  box-shadow: 0 0 0 3px #43e97b, 0 8px 25px rgba(67, 233, 123, 0.3);
+}
+
+.selection-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: #43e97b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.id-card-wrapper.selected .selection-indicator {
+  opacity: 1;
+}
+
+/* ID Card Styles */
+.id-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e0e0e0;
+  min-height: 220px;
+  position: relative;
+}
+
+/* When background image is applied */
+.id-card[style*="background-image"] .id-card-header {
+  background: linear-gradient(135deg, rgba(30, 60, 114, 0.85) 0%, rgba(42, 82, 152, 0.85) 100%);
+}
+
+.id-card[style*="background-image"] .id-card-body {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.id-card[style*="background-image"] .id-card-footer {
+  background: linear-gradient(135deg, rgba(30, 60, 114, 0.85) 0%, rgba(42, 82, 152, 0.85) 100%);
+}
+
+.id-card-header {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.school-logo {
+  font-size: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.school-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.school-info p {
+  margin: 3px 0 0 0;
+  font-size: 0.75rem;
+  opacity: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.id-card-body {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 15px;
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.photo-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.student-photo {
+  width: 90px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 3px solid #1e3c72;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-row {
+  display: flex;
+  gap: 8px;
+  font-size: 0.85rem;
+}
+
+.detail-row.name-row {
+  margin-bottom: 5px;
+}
+
+.detail-label {
+  color: #7f8c8d;
+  font-weight: 500;
+  min-width: 50px;
+}
+
+.detail-value {
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.detail-value.name {
+  font-size: 1.1rem;
+  color: #1e3c72;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.detail-value.blood-group {
+  background: #e74c3c;
+  color: white;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.id-card-footer {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-info,
+.admission-no {
+  opacity: 0.95;
+}
+
+/* Schools Grouped View */
+.schools-grouped-view {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.school-group {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.school-group-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #ecf0f1;
+  flex-wrap: wrap;
+}
+
+.school-group-header h2 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.4rem;
+}
+
+.count-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Fields badge in school group header */
+.fields-badge {
+  background: #95a5a6;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.export-school-btn {
+  margin-left: auto;
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.export-school-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(67, 233, 123, 0.4);
+}
+
+.export-school-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.school-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 25px;
+  justify-items: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .id-card-viewer {
+    padding: 10px;
+  }
+
+  .viewer-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .actions-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stats {
+    justify-content: center;
+  }
+
+  .action-buttons {
+    justify-content: center;
+  }
+
+  .id-cards-grid,
+  .school-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .professional-card {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .school-group-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .export-school-btn {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .id-card-viewer {
+    background: white;
+    padding: 0;
+  }
+
+  .viewer-header,
+  .filters-section,
+  .actions-section {
+    display: none;
+  }
+
+  .id-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10mm;
+  }
+
+  .id-card-wrapper {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .selection-indicator,
+  .card-action-buttons {
+    display: none;
+  }
+
+  .professional-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* ==================== Professional ID Card Styles ==================== */
+/* Clean design - data positioning only, background from admin upload */
+/* Card ratio: 54mm x 84mm (width x height) */
+
+.professional-card {
+  width: 204px;  /* 54mm at 96dpi */
+  height: 317px; /* 84mm at 96dpi */
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  background-color: #ffffff;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  border: none;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* When background image is set - auto-fit to card size */
+.professional-card[style*="background-image"] {
+  padding: 0 !important;
+  margin: 0;
+  background-size: 100% 100% !important; /* Force exact fit to card */
+  background-position: 0 0 !important;
+  background-repeat: no-repeat !important;
+  background-origin: padding-box !important;
+  background-clip: border-box !important;
+  border: none !important;
+  border-radius: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  outline: none !important;
+}
+
+.professional-card[style*="background-image"] .card-header-section,
+.professional-card[style*="background-image"] .card-photo-row,
+.professional-card[style*="background-image"] .card-name-section,
+.professional-card[style*="background-image"] .card-details-section,
+.professional-card[style*="background-image"] .card-footer-section {
+  background: transparent;
+}
+
+/* Header spacer for background image mode - matches template header area */
+.card-header-spacer {
+  height: 81px; /* Space for school name, address, contact in background */
+  flex-shrink: 0;
+}
+
+/* Header Section - School Name (only when no background) */
+.card-header-section {
+  background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+  color: white;
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 3px solid #ffd700;
+}
+
+.school-name-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.school-address-text {
+  margin: 5px 0 0 0;
+  font-size: 0.7rem;
+  opacity: 0.95;
+  line-height: 1.3;
+}
+
+/* Photo Row Section */
+.card-photo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 5px 10px 0px 10px;
+  min-height: 75px;
+}
+
+.card-left-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 38px;
+  padding-top: 45px;
+}
+
+/* Stream text on left side */
+.stream-info {
+  text-align: center;
+}
+
+.stream-value-text {
+  display: block;
+  font-size: 0.55rem;
+  color: #1a237e;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* With background - adjust stream text */
+.professional-card[style*="background-image"] .stream-value-text {
+  color: #000;
+  font-weight: 800;
+}
+
+.card-photo-container {
+  flex-shrink: 0;
+  margin-top: -25px; /* Pull photo up only */
+}
+
+.student-photo-img {
+  width: 70px;  /* ~21mm */
+  height: 80px; /* ~20mm */
+  object-fit: cover;
+  border-radius: 2px;
+  border: 1px solid #1a237e;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  background: #fff;
+}
+
+/* With background - minimal photo border */
+.professional-card[style*="background-image"] .student-photo-img {
+  border: none;
+  box-shadow: none;
+  border-radius: 2px;
+}
+
+.card-right-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  width: 45px;
+  padding-top: 10px;
+}
+
+.blood-group-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.blood-value {
+  font-size: 0.55rem;
+  font-weight: 800;
+  color: #d32f2f;
+}
+
+/* Session info on right side */
+.session-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.session-value {
+  display: block;
+  font-size: 0.5rem;
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+/* Student Name Section */
+.card-name-section {
+  padding: 0px 8px 2px 8px;
+  text-align: center;
+}
+
+.student-name-text {
+  margin: 0;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #1a237e;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* With background - darker text */
+.professional-card[style*="background-image"] .student-name-text {
+  color: #000;
+  text-shadow: none;
+}
+
+/* Details Section */
+.card-details-section {
+  flex: 1;
+  padding: 4px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Compact Row for Class, Roll, Adm */
+.details-row.compact-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  padding-bottom: 3px;
+  margin-bottom: 2px;
+}
+
+.compact-row .detail-item {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.compact-row .detail-label {
+  font-size: 0.5rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.compact-row .detail-value.highlight {
+  font-size: 0.55rem;
+  color: #d32f2f;
+  font-weight: 700;
+}
+
+/* Details List */
+.details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.5rem;
+  line-height: 1.3;
+}
+
+.detail-row .detail-label {
+  min-width: 55px;
+  color: #333;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.detail-row .detail-separator {
+  margin: 0 2px;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.detail-row .detail-value {
+  color: #d32f2f;
+  font-weight: 600;
+  flex: 1;
+  word-break: break-word;
+}
+
+.detail-row .detail-value.address-value {
+  font-size: 0.5rem;
+  line-height: 1.2;
+}
+
+/* Footer Section (only shown without background) */
+.card-footer-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 4px 8px;
+  background: linear-gradient(180deg, #f5f5f5 0%, #eeeeee 100%);
+  border-top: 2px solid #1a237e;
+  min-height: 45px;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stream-badge {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: inline-flex;
+  gap: 5px;
+  box-shadow: 0 2px 6px rgba(255, 152, 0, 0.4);
+}
+
+.stream-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #d32f2f;
+}
+
+.stream-value {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+/* Stream overlay for background mode */
+.card-stream-overlay {
+  position: absolute;
+  bottom: 35px;
+  left: 15px;
+}
+
+.stream-text-only {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1a237e;
+}
+
+/* Without background - solid white */
+.professional-card:not([style*="background-image"]) {
+  background: #ffffff;
+}
+
+/* ==================== Card Action Buttons ==================== */
+.card-action-buttons {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  display: flex;
+  gap: 4px;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.id-card-wrapper:hover .card-action-buttons {
+  opacity: 1;
+}
+
+.card-edit-btn,
+.card-delete-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.card-edit-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.card-edit-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.card-delete-btn {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+  color: white;
+}
+
+.card-delete-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(238, 90, 90, 0.4);
+}
+
+/* ==================== Edit Modal Styles ==================== */
+.edit-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.edit-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.edit-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #ecf0f1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px 16px 0 0;
+}
+
+.edit-modal-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.3rem;
+}
+
+.close-modal-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-modal-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.edit-modal-body {
+  padding: 20px 25px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.edit-modal-subtitle {
+  color: #7f8c8d;
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
+}
+
+.edit-modal-subtitle strong {
+  color: #2c3e50;
+}
+
+.edit-form-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edit-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.edit-field-group label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.edit-field-group input,
+.edit-field-group textarea {
+  padding: 12px 14px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.edit-field-group input:focus,
+.edit-field-group textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.edit-field-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.edit-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 25px;
+  border-top: 1px solid #ecf0f1;
+  background: #f8f9fa;
+  border-radius: 0 0 16px 16px;
+}
+
+.cancel-edit-btn,
+.save-edit-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-edit-btn {
+  background: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.cancel-edit-btn:hover:not(:disabled) {
+  background: #bdc3c7;
+  color: #2c3e50;
+}
+
+.save-edit-btn {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.save-edit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(67, 233, 123, 0.4);
+}
+
+.save-edit-btn:disabled,
+.cancel-edit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+  .edit-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .edit-modal-header {
+    padding: 15px 20px;
+  }
+
+  .edit-modal-body {
+    padding: 15px 20px;
+  }
+
+  .edit-modal-footer {
+    padding: 15px 20px;
+    flex-direction: column;
+  }
+
+  .cancel-edit-btn,
+  .save-edit-btn {
+    width: 100%;
+  }
+}
+
+/* ==================== Export Modal Styles ==================== */
+.export-modal {
+  max-width: 600px;
+}
+
+.export-modal-header {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.export-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.export-option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.export-option-group > label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.export-option-group select {
+  padding: 12px 14px;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  background: white;
+  cursor: pointer;
+}
+
+.export-option-group select:focus {
+  outline: none;
+  border-color: #43e97b;
+  box-shadow: 0 0 0 3px rgba(67, 233, 123, 0.1);
+}
+
+/* Export Format Buttons */
+.export-format-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.format-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 15px 10px;
+  border: 2px solid #ecf0f1;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.format-btn:hover {
+  border-color: #bdc3c7;
+  background: #f8f9fa;
+}
+
+.format-btn.active {
+  border-color: #43e97b;
+  background: linear-gradient(135deg, rgba(67, 233, 123, 0.1) 0%, rgba(56, 249, 215, 0.1) 100%);
+}
+
+.format-btn .format-icon {
+  font-size: 1.5rem;
+}
+
+.format-btn span:not(.format-icon) {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+.format-btn small {
+  color: #7f8c8d;
+  font-size: 0.75rem;
+}
+
+/* Checkbox Options */
+.checkbox-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px 12px;
+  border: 1px solid #ecf0f1;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.checkbox-label:hover {
+  background: #f8f9fa;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #43e97b;
+}
+
+.checkbox-label span {
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+
+/* Export Info Box */
+.export-info-box {
+  background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+  border-radius: 10px;
+  padding: 15px 18px;
+  border-left: 4px solid #667eea;
+}
+
+.export-info-box h4 {
+  margin: 0 0 10px 0;
+  color: #2c3e50;
+  font-size: 0.95rem;
+}
+
+.export-info-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.export-info-box li {
+  color: #555;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+
+.export-info-box li strong {
+  color: #2c3e50;
+}
+
+.export-confirm-btn {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
+}
+
+/* Export Progress Bar */
+.export-progress-container {
+  background: white;
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.export-progress-bar {
+  flex: 1;
+  height: 10px;
+  background: #ecf0f1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.export-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.export-progress-text {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 120px;
+}
+
+/* Advanced Export Button */
+.advanced-export-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.advanced-export-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* Responsive for export modal */
+@media (max-width: 768px) {
+  .export-format-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .format-btn {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .format-btn .format-icon {
+    font-size: 1.2rem;
+  }
+}
+
