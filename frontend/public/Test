@@ -1,0 +1,6 @@
+PORT=4000
+MONGODB_URI=mongodb+srv://sk438432_db_user:sourav12@cluster0.uqvvqfi.mongodb.net/formbuilder?appName=Cluster0
+CLOUDINARY_CLOUD_NAME=dsdosgbny
+CLOUDINARY_API_KEY=462388264682279
+CLOUDINARY_API_SECRET=WZ3Q5FhTt2cpmzR2K8ySdTPYWeU
+
